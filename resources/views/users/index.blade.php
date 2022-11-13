@@ -1,7 +1,11 @@
 <x-app-layout>
-  <div class="container mx-auto grid px-6">
+  <div class="container mx-auto px-6">
+    <div class="flex justify-end">
+      <a href="{{ route('users.create') }}"
+        class="mt-3 rounded bg-green-500 px-5 py-1.5 text-white hover:bg-green-600">Create User</a>
+    </div>
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Users
+      Users List
     </h2>
     <!-- New Table -->
     <div class="shadow-xs w-full overflow-hidden rounded-lg">
@@ -10,43 +14,57 @@
           <thead>
             <tr
               class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
-              <th class="px-4 py-3">Client</th>
-              <th class="px-4 py-3">Amount</th>
-              <th class="px-4 py-3">Status</th>
-              <th class="px-4 py-3">Date</th>
+              <th class="px-4 py-3">ID</th>
+              <th class="px-4 py-3">FIRST NAME</th>
+              <th class="px-4 py-3">LAST NAME</th>
+              <th class="px-4 py-3">EMAIL</th>
+              <th class="px-4 py-3">ROLE</th>
+              <th class="px-4 py-3"></th>
             </tr>
           </thead>
           <tbody class="divide-y bg-white dark:divide-gray-700 dark:bg-gray-800">
-            <tr class="text-gray-700 dark:text-gray-400">
-              <td class="px-4 py-3">
-                <div class="flex items-center text-sm">
-                  <!-- Avatar with inset shadow -->
-                  <div class="relative mr-3 hidden h-8 w-8 rounded-full md:block">
-                    <img class="h-full w-full rounded-full object-cover"
-                      src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                      alt="" loading="lazy" />
-                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+            @foreach ($users as $user)
+              <tr class="text-gray-700 dark:text-gray-400">
+                <td class="px-4 py-3 text-sm">{{ $user->id }}</td>
+                <td class="px-4 py-3 text-sm">{{ $user->first_name }}</td>
+                <td class="px-4 py-3 text-sm">{{ $user->last_name }}</td>
+                <td class="px-4 py-3 text-sm">{{ $user->email }}</td>
+                <td class="px-4 py-3 text-xs">
+                  @if (20000 % $user->id === 0)
+                    <span
+                      class="rounded-full bg-green-100 px-2 py-1 font-semibold leading-tight text-indigo-700 dark:bg-indigo-700 dark:text-green-100">
+                      Admin
+                    </span>
+                  @else
+                    <span
+                      class="rounded-full bg-green-100 px-2 py-1 font-semibold leading-tight text-amber-500 dark:bg-amber-500 dark:text-green-100">
+                      User
+                    </span>
+                  @endif
+                </td>
+                <td class="px-4 py-3 text-sm">
+                  <div class="flex space-x-1">
+                    <a href="{{ route('users.edit', $user->id) }}"
+                      class="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600">Edit</a>
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                      onsubmit="return confirm('are you sure?')">
+                      @csrf
+                      @method('DELETE')
+                      <button class="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600">Delete</button>
+                    </form>
                   </div>
-                  <div>
-                    <p class="font-semibold">Hans Burger</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                      10x Developer
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-4 py-3 text-sm">$ 863.45</td>
-              <td class="px-4 py-3 text-xs">
-                <span
-                  class="rounded-full bg-green-100 px-2 py-1 font-semibold leading-tight text-green-700 dark:bg-green-700 dark:text-green-100">
-                  Approved
-                </span>
-              </td>
-              <td class="px-4 py-3 text-sm">6/10/2020</td>
-            </tr>
+                </td>
+              </tr>
+            @endforeach
+
           </tbody>
         </table>
       </div>
+      <div>
+
+        <p class="mt-10"> {{ $users->links() }}</p>
+      </div>
+
     </div>
 
 </x-app-layout>

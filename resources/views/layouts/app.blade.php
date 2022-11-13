@@ -25,7 +25,7 @@
     <aside class="z-20 hidden w-64 flex-shrink-0 overflow-y-auto bg-white dark:bg-gray-800 md:block">
       <div class="py-4 text-gray-500 dark:text-gray-400">
         <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-          Armin Shahab
+          {{ auth()->user()->fullName }}
         </a>
         <ul class="mt-6">
           <li class="relative px-6 py-3">
@@ -54,8 +54,7 @@
 
           </li>
           <li class="relative px-6 py-3">
-            <a class="inline-flex w-full items-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="forms.html">
+            <x-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -63,12 +62,11 @@
                 </path>
               </svg>
               <span class="ml-4">Clients</span>
-            </a>
+            </x-link>
           </li>
 
           <li class="relative px-6 py-3">
-            <a class="inline-flex w-full items-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="cards.html">
+            <x-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -76,12 +74,11 @@
                 </path>
               </svg>
               <span class="ml-4">Projects</span>
-            </a>
+            </x-link>
           </li>
 
           <li class="relative px-6 py-3">
-            <a class="inline-flex w-full items-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="modals.html">
+            <x-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -89,14 +86,20 @@
                 </path>
               </svg>
               <span class="ml-4">Tasks</span>
-            </a>
+            </x-link>
           </li>
         </ul>
+
         <div class="my-6 px-6">
-          <button
-            class="focus:shadow-outline-purple flex w-full items-center justify-center rounded-lg border border-transparent bg-purple-600 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-purple-700 focus:outline-none active:bg-purple-600">
-            Log Out
-          </button>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="{{ route('logout') }}"
+              class="focus:shadow-outline-purple flex w-full cursor-pointer items-center justify-center rounded-lg border border-transparent bg-purple-600 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-purple-700 focus:outline-none active:bg-purple-600"
+              onclick="event.preventDefault();
+                                              this.closest('form').submit();">
+              Log Out
+            </a>
+          </form>
         </div>
       </div>
     </aside>
@@ -115,14 +118,11 @@
       @keydown.escape="closeSideMenu">
       <div class="py-4 text-gray-500 dark:text-gray-400">
         <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-          Windmill
+          {{ auth()->user()->full_name }}
         </a>
         <ul class="mt-6">
           <li class="relative px-6 py-3">
-            <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600"
-              aria-hidden="true"></span>
-            <a class="inline-flex w-full items-center text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:text-gray-100 dark:hover:text-gray-200"
-              href="index.html">
+            <x-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -130,13 +130,12 @@
                 </path>
               </svg>
               <span class="ml-4">Dashboard</span>
-            </a>
+            </x-link>
           </li>
         </ul>
         <ul>
           <li class="relative px-6 py-3">
-            <a class="inline-flex w-full items-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="forms.html">
+            <x-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -144,11 +143,21 @@
                 </path>
               </svg>
               <span class="ml-4">Clients</span>
-            </a>
+            </x-link>
           </li>
           <li class="relative px-6 py-3">
-            <a class="inline-flex w-full items-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="cards.html">
+            <x-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+              <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+                </path>
+              </svg>
+              <span class="ml-4">Users</span>
+            </x-link>
+          </li>
+          <li class="relative px-6 py-3">
+            <x-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -156,11 +165,10 @@
                 </path>
               </svg>
               <span class="ml-4">Projects</span>
-            </a>
+            </x-link>
           </li>
           <li class="relative px-6 py-3">
-            <a class="inline-flex w-full items-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              href="modals.html">
+            <x-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
               <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -168,14 +176,19 @@
                 </path>
               </svg>
               <span class="ml-4">Tasks</span>
-            </a>
+            </x-link>
           </li>
         </ul>
         <div class="my-6 px-6">
-          <button
-            class="focus:shadow-outline-purple flex items-center justify-between rounded-lg border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-purple-700 focus:outline-none active:bg-purple-600">
-            Log Out
-          </button>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="{{ route('logout') }}"
+              class="focus:shadow-outline-purple flex w-full cursor-pointer items-center justify-center rounded-lg border border-transparent bg-purple-600 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-purple-700 focus:outline-none active:bg-purple-600"
+              onclick="event.preventDefault();
+                                              this.closest('form').submit();">
+              Log Out
+            </a>
+          </form>
         </div>
       </div>
     </aside>
@@ -254,8 +267,7 @@
           </ul>
         </div>
       </header>
-      <main class="h-full overflow-y-auto">
-
+      <main class="h-full overflow-y-auto pb-10">
         {{ $slot }}
       </main>
     </div>
