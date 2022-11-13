@@ -41,6 +41,10 @@
           </tbody>
         </table>
       </div>
+      <div>
+
+        <p class="mt-10"> {{ $tasks->links() }}</p>
+      </div>
     </div>
 
 </x-app-layout>

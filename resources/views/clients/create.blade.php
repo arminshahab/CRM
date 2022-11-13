@@ -11,7 +11,7 @@
         <label for="contact_name" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
         <input type="text" id="contact_name" name="contact_name"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Contact Name">
+          placeholder="Contact Name" value="{{ old('contact_name') }}">
         @error('contact_name')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror
@@ -23,7 +23,7 @@
           Number</label>
         <input type="number" id="contact_phone_number" name="contact_phone_number"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Phone Number">
+          placeholder="Phone Number" value="{{ old('contact_phone_number') }}">
         @error('contact_phone_number')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror
@@ -34,7 +34,7 @@
         <label for="contact_email" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
         <input type="email" id="contact_email" name="contact_email"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Contact Email">
+          placeholder="Contact Email" value="{{ old('contact_email') }}">
         @error('contact_email')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror
@@ -45,10 +45,11 @@
 
       {{-- name --}}
       <div class="mb-3">
-        <label for="company_name" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company Name</label>
+        <label for="company_name" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company
+          Name</label>
         <input type="text" id="company_name" name="company_name"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Company Name">
+          placeholder="Company Name" value="{{ old('company_name') }}">
         @error('company_name')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror
@@ -56,10 +57,11 @@
 
       {{-- address --}}
       <div class="mb-3">
-        <label for="company_address" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company Address</label>
+        <label for="company_address" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company
+          Address</label>
         <input type="text" id="company_address" name="company_address"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Company Address">
+          placeholder="Company Address" value="{{ old('company_address') }}">
         @error('company_address')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror
@@ -67,10 +69,11 @@
 
       {{-- city --}}
       <div class="mb-3">
-        <label for="company_city" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company City</label>
+        <label for="company_city" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company
+          City</label>
         <input type="text" id="company_city" name="company_city"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Company City">
+          placeholder="Company City" value="{{ old('company_city') }}">
         @error('company_city')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror
@@ -78,10 +81,11 @@
 
       {{-- zip --}}
       <div class="mb-7">
-        <label for="company_zip" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company Zip</label>
+        <label for="company_zip" class="mb-1 block text-sm font-medium text-gray-900 dark:text-gray-300">Company
+          Zip</label>
         <input type="number" id="company_zip" name="company_zip"
           class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Company Zip">
+          placeholder="Company Zip" value="{{ old('company_zip') }}">
         @error('company_zip')
           <p class="mt-1 text-xs text-red-400"> {{ $message }}</p>
         @enderror

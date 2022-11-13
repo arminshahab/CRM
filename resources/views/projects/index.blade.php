@@ -1,7 +1,8 @@
 <x-app-layout>
   <div class="container mx-auto px-6">
     <div class="flex justify-end">
-      <button class="mt-3 rounded bg-green-500 px-5 py-1.5 text-white hover:bg-green-600">Create Project</button>
+      <a href="{{ route('projects.create') }}"
+        class="mt-3 rounded bg-green-500 px-5 py-1.5 text-white hover:bg-green-600">Create Project</a>
     </div>
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Projects List
@@ -31,8 +32,14 @@
                 <td class="px-4 py-3 text-sm">{{ $project->status }}</td>
                 <td class="px-4 py-3 text-sm">
                   <div class="flex space-x-1">
-                    <button class="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600">Edit</button>
-                    <button class="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600">Delete</button>
+                    <a href="{{ route('projects.edit', $project->id) }}"
+                      class="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600">Edit</a>
+                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST"
+                      onsubmit="return confirm('are you sure?')">
+                      @csrf
+                      @method('DELETE')
+                      <button class="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600">Delete</button>
+                    </form>
                   </div>
                 </td>
               </tr>
@@ -40,6 +47,9 @@
 
           </tbody>
         </table>
+      </div>
+      <div>
+        <p class="mt-10"> {{ $projects->links() }}</p>
       </div>
     </div>
 
